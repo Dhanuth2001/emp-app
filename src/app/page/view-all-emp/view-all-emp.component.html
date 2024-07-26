@@ -1,0 +1,116 @@
+<p class="text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4 ">VIEW ALL EMPLOYEES</p>
+
+<div class="container">
+    <table class="table border">
+        <tr class="border text-center bg-black text-white">
+            <th>Count</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Role</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="border text-center" *ngFor="let employee of employeeList; index as i">
+            <td>{{i+1}}</td>
+            <td>{{"EMP#000" + employee.id}}</td>
+            <td>{{employee.firstName+" "+employee.lastName}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.departmentId}}</td>
+            <td>{{employee.roleId}}</td>
+            <td><button class="btn btn-danger" (click)="deleteEmploye(employee)"><i
+                        class="bi bi-trash3-fill"></i></button>
+            </td>
+            <td><button class="btn btn-primary" (click)="edit(employee)" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button></td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-mdb-ripple-init data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">First Name:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="selectedEmployee.firstName"
+                            name="firstName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Last Name:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="selectedEmployee.lastName"
+                            name="lastName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="selectedEmployee.email"
+                            name="email" />
+                    </div>
+                    <div class="mb-3">
+                        <select [(ngModel)]="selectedEmployee.departmentId" class="form-control" name="departmentId" required>
+                            <option value="">Select the Department </option>
+                            <option value="No Department">No Department</option>
+                            <option value="Product Development">Product Development</option>
+                            <option value="Project Management">Project Management</option>
+                            <option value="Sales and Marketing">Sales and Marketing</option>
+                            <option value="Customer Support">Customer Support</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="Finance and Accounting">Finance and Accounting</option>
+                            <option value="IT and Infrastructure">IT and Infrastructure</option>
+                            <option value="Legal and Compliance">Legal and Compliance</option>
+                            <option value="Administration and Operations">Administration and
+                                Operations</option>
+                            <option value="Product Management">Product Management</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select [(ngModel)]="selectedEmployee.roleId" class="form-control" name="roleId" required>
+                            <option value="">Select the Role</option>
+                            <option value="No Role">No Role</option>
+                            <option value="Software Developer/Engineer">Software Developer/Engineer
+                            </option>
+                            <option value="Quality Assurance (QA)">Quality Assurance (QA)</option>
+                            <option value="User Experience (UX) Design">User Experience (UX) Design
+                            </option>
+                            <option value="Research and Development (R&D)">Research and Development
+                                (R&D)</option>
+                            <option value="Project Manager">Project Manager</option>
+                            <option value="Sales Manager">Sales Manager</option>
+                            <option value="Marketing Manager">Marketing Manager</option>
+                            <option value="Technical Support Specialist">Technical Support
+                                Specialist</option>
+                            <option value="Customer Support Representative">Customer Support
+                                Representative</option>
+                            <option value="HR Manager">HR Manager</option>
+                            <option value="Research and Development (R&D)">Research and Development
+                                (R&D)</option>
+                            <option value="Chief Financial Officer (CFO)">Chief Financial Officer
+                                (CFO)</option>
+                            <option value="Accountant">Accountant</option>
+                            <option value="IT Manager">IT Manager</option>
+                            <option value="IT Support Specialist">IT Support Specialist</option>
+                            <option value="Legal Counsel">Legal Counsel</option>
+                            <option value="Office Manager">Office Manager</option>
+                            <option value="Administrative Assistant">Administrative Assistant
+                            </option>
+                            <option value="Product Manager">Product Manager</option>
+                            <option value="Product Analyst">Product Analyst</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-ripple-init
+                    data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateEmployee()" data-mdb-ripple-init>Update</button>
+            </div>
+        </div>
+    </div>
+</div>
